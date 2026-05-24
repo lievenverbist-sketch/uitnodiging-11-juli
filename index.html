@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uitnodiging – 11 juli 2026 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rood:    #E63946;
+      --goud:    #FFD166;
+      --groen:   #06D6A0;
+      --blauw:   #118AB2;
+      --donker:  #073B4C;
+      --licht:   #FFF8F0;
+      --pizza:   #F4A261;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--donker);
+      font-family: 'Nunito', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Confetti dots */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, var(--goud) 2px, transparent 2px),
+        radial-gradient(circle, var(--rood) 2px, transparent 2px),
+        radial-gradient(circle, var(--groen) 2px, transparent 2px),
+        radial-gradient(circle, #fff 1px, transparent 1px);
+      background-size: 120px 120px, 80px 80px, 100px 100px, 60px 60px;
+      background-position: 10px 20px, 40px 70px, 70px 10px, 20px 50px;
+      opacity: .18;
+      pointer-events: none;
+      animation: drift 20s linear infinite;
+    }
+
+    @keyframes drift {
+      from { background-position: 10px 20px, 40px 70px, 70px 10px, 20px 50px; }
+      to   { background-position: 130px 140px, 160px 190px, 190px 130px, 140px 170px; }
+    }
+
+    .card {
+      background: var(--licht);
+      border-radius: 2rem;
+      max-width: 520px;
+      width: 100%;
+      padding: 2.5rem 2rem 2rem;
+      box-shadow: 0 0 0 6px var(--goud), 0 20px 60px rgba(0,0,0,.5);
+      position: relative;
+      animation: popIn .6s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(.85); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .banner {
+      display: flex;
+      gap: .5rem;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: .6rem;
+      animation: wave 1.8s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%,100% { transform: rotate(-3deg); }
+      50%      { transform: rotate(3deg); }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: var(--rood);
+      text-align: center;
+      line-height: 1.2;
+      text-shadow: 3px 3px 0 var(--goud);
+    }
+
+    .datum {
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--blauw);
+      margin: .4rem 0 1.4rem;
+      letter-spacing: .05em;
+    }
+
+    .divider {
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--rood), var(--goud), var(--groen), var(--blauw));
+      margin-bottom: 1.6rem;
+    }
+
+    label.field-label {
+      display: block;
+      font-weight: 700;
+      color: var(--donker);
+      margin-bottom: .35rem;
+      font-size: .95rem;
+    }
+
+    .field { margin-bottom: 1.25rem; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: .7rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: .8rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: var(--donker);
+      transition: border-color .2s;
+      background: #fff;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--blauw);
+    }
+
+    /* Radio pill buttons */
+    .pill-group {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-group input[type="radio"] { display: none; }
+
+    .pill-group label {
+      cursor: pointer;
+      padding: .5rem 1.2rem;
+      border-radius: 2rem;
+      border: 2px solid #ccc;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #888;
+      transition: all .2s;
+      user-select: none;
+    }
+
+    .pill-group input[type="radio"]:checked + label {
+      border-color: var(--groen);
+      background: var(--groen);
+      color: #fff;
+    }
+
+    /* Pizza section */
+    .pizza-box {
+      background: linear-gradient(135deg, #fff3e6, #ffe8cc);
+      border: 2px dashed var(--pizza);
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      margin-top: .6rem;
+      display: none;
+      animation: slideDown .3s ease both;
+    }
+
+    .pizza-box.visible { display: block; }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pizza-emoji { font-size: 1.5rem; vertical-align: middle; }
+
+    .pizza-box label.field-label { color: var(--pizza); }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      padding: .9rem;
+      background: linear-gradient(135deg, var(--rood), #c1121f);
+      color: #fff;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #800, 0 6px 20px rgba(230,57,70,.4);
+      transition: transform .15s, box-shadow .15s;
+      margin-top: .5rem;
+      letter-spacing: .03em;
+    }
+
+    .btn-submit:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 #800, 0 10px 28px rgba(230,57,70,.45); }
+    .btn-submit:active { transform: translateY(2px);  box-shadow: 0 2px 0 #800; }
+
+    /* Success state */
+    #success {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    #success .big-emoji { font-size: 4rem; display: block; margin-bottom: 1rem; animation: bounce 1s ease infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    #success h2 { font-family: 'Pacifico', cursive; color: var(--rood); font-size: 1.6rem; text-shadow: 2px 2px 0 var(--goud); }
+    #success p  { color: var(--donker); font-weight: 600; margin-top: .6rem; }
+
+    .error-msg { color: var(--rood); font-size: .85rem; margin-top: .25rem; display: none; font-weight: 600; }
+
+    .note { font-size: .82rem; color: #888; margin-top: 1rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Header -->
+  <div class="banner">🎉🏴🎊🍕🥳</div>
+  <h1>Kom je ook?</h1>
+  <p class="datum">Zaterdag 11 juli 2026</p>
+  <div class="divider"></div>
+
+  <!-- Form -->
+  <div id="form-wrap">
+    <div class="field">
+      <label class="field-label" for="naam">👤 Jouw naam</label>
+      <input type="text" id="naam" placeholder="Voor- en achternaam" />
+      <span class="error-msg" id="err-naam">Vul je naam in.</span>
+    </div>
+
+
+    <div class="field">
+      <label class="field-label">🎈 Kom je op 11 juli?</label>
+      <div class="pill-group">
+        <input type="radio" name="aanwezig" id="ja"  value="ja"  />
+        <label for="ja">✅ Ja, ik kom!</label>
+        <input type="radio" name="aanwezig" id="nee" value="nee" />
+        <label for="nee">❌ Helaas niet</label>
+      </div>
+      <span class="error-msg" id="err-aanwezig">Geef aan of je komt.</span>
+    </div>
+
+    <!-- Pizza sectie (verschijnt als ja) -->
+    <div class="pizza-box" id="pizza-sectie">
+      <div class="field">
+        <label class="field-label"><span class="pizza-emoji">🍕</span> Blijf je pizza eten?</label>
+        <div class="pill-group">
+          <input type="radio" name="pizza" id="pizza-ja"  value="ja"  />
+          <label for="pizza-ja">🍕 Ja, lekker!</label>
+          <input type="radio" name="pizza" id="pizza-nee" value="nee" />
+          <label for="pizza-nee">Nee, bedankt</label>
+        </div>
+      </div>
+
+      <div class="field" id="personen-veld" style="display:none;">
+        <label class="field-label" for="personen">👥 Met hoeveel personen (inclusief jezelf)?</label>
+        <input type="number" id="personen" min="1" max="20" placeholder="bv. 2" />
+        <span class="error-msg" id="err-personen">Vul het aantal personen in.</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="opmerking">💬 Opmerkingen (optioneel)</label>
+      <textarea id="opmerking" rows="3" placeholder="Dieetwensen, vragen, ..."></textarea>
+    </div>
+
+    <button class="btn-submit" id="btn-verstuur" onclick="verstuur()">Stuur mijn antwoord 🎉</button>
+    <p class="note">Je antwoord wordt bezorgd aan de organisatoren.</p>
+  </div>
+
+  <!-- Success -->
+  <div id="success">
+    <span class="big-emoji">🎊</span>
+    <h2>Super, bedankt!</h2>
+    <p id="success-msg">Je antwoord is verstuurd. Tot binnenkort!</p>
+  </div>
+</div>
+
+<script>
+  // Toon/verberg pizza-sectie
+  document.querySelectorAll('input[name="aanwezig"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const box = document.getElementById('pizza-sectie');
+      if (r.value === 'ja' && r.checked) {
+        box.classList.add('visible');
+      } else {
+        box.classList.remove('visible');
+        document.querySelectorAll('input[name="pizza"]').forEach(p => p.checked = false);
+        document.getElementById('personen-veld').style.display = 'none';
+      }
+    });
+  });
+
+  // Toon/verberg personen-veld
+  document.querySelectorAll('input[name="pizza"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('personen-veld').style.display =
+        (r.value === 'ja' && r.checked) ? 'block' : 'none';
+    });
+  });
+
+  function toonFout(id, toon) {
+    document.getElementById(id).style.display = toon ? 'block' : 'none';
+  }
+
+  async function verstuur() {
+    // Validatie
+    const naam      = document.getElementById('naam').value.trim();
+    const aanwezig  = document.querySelector('input[name="aanwezig"]:checked');
+    const pizzaKeuze = document.querySelector('input[name="pizza"]:checked');
+    const personen  = document.getElementById('personen').value;
+
+    let ok = true;
+
+    toonFout('err-naam',    !naam);      if (!naam)     ok = false;
+    toonFout('err-aanwezig', !aanwezig); if (!aanwezig) ok = false;
+
+    if (aanwezig && aanwezig.value === 'ja' && pizzaKeuze && pizzaKeuze.value === 'ja') {
+      toonFout('err-personen', !personen || personen < 1);
+      if (!personen || personen < 1) ok = false;
+    }
+
+    if (!ok) return;
+
+    const komtJa   = aanwezig.value === 'ja';
+    const eetPizza = pizzaKeuze && pizzaKeuze.value === 'ja';
+    const opmerking = document.getElementById('opmerking').value.trim();
+
+    // Bouw berichtinhoud
+    let bericht = `Naam: ${naam}\n`;
+    bericht += `Aanwezig: ${komtJa ? 'Ja' : 'Nee'}\n`;
+    if (komtJa) {
+      bericht += `Pizza: ${pizzaKeuze ? (eetPizza ? 'Ja' : 'Nee') : 'Niet opgegeven'}\n`;
+      if (eetPizza) bericht += `Aantal personen voor pizza: ${personen}\n`;
+    }
+    if (opmerking) bericht += `Opmerkingen: ${opmerking}\n`;
+
+    // Verstuur via Formspree
+    const btn = document.getElementById('btn-verstuur');
+    btn.disabled = true;
+    btn.textContent = 'Versturen...';
+
+    const formData = new FormData();
+    formData.append('_subject', 'antwoord uitnodiging 11 juli');
+    formData.append('_replyto', '');
+    formData.append('naam', naam);
+    formData.append('aanwezig', komtJa ? 'Ja' : 'Nee');
+    if (komtJa) {
+      formData.append('pizza', pizzaKeuze ? (eetPizza ? 'Ja' : 'Nee') : 'Niet opgegeven');
+      if (eetPizza) formData.append('aantal_personen', personen);
+    }
+    if (opmerking) formData.append('opmerkingen', opmerking);
+    formData.append('_cc', 'reine.dl@gmail.com');
+
+    try {
+      const resp = await fetch('https://formspree.io/f/xzdwvqwj', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!resp.ok) throw new Error('Fout bij versturen');
+
+      document.getElementById('form-wrap').style.display = 'none';
+      const succ = document.getElementById('success');
+      succ.style.display = 'block';
+      const msg = komtJa
+        ? (eetPizza ? `We rekenen op jou${personen > 1 ? ' en je ' + (personen - 1) + ' gezel(len)' : ''} voor de pizza! 🍕` : 'Fijn dat je erbij bent! 🎉')
+        : 'Jammer dat je er niet bij kunt zijn. 😔';
+      document.getElementById('success-msg').textContent = msg;
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'Stuur mijn antwoord 🎉';
+      alert('Er ging iets mis. Probeer het opnieuw.');
+    }
+  }
+</script>
+</body>
+</html>
